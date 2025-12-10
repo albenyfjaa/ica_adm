@@ -24,7 +24,7 @@ from selenium.common.exceptions import TimeoutException, NoSuchElementException
 USUARIO = 'albeny-fjaa'
 SENHA = 'Fj@@0788'
 URL_LOGIN = "https://10.32.24.172:8444/sigad-ica/pages/login/login.jsf"
-PASTA_DOWNLOAD = os.path.join(os.getcwd(), "downloads_sigadaer_2025")
+PASTA_DOWNLOAD = os.path.join(os.getcwd(), "downloads_sigadaer_2024")
 
 if not os.path.exists(PASTA_DOWNLOAD):
     os.makedirs(PASTA_DOWNLOAD)
@@ -117,7 +117,7 @@ def monitorar_e_renomear(pasta, arquivos_antes, nome_desejado):
 # =============================================================================
 def preparar_lista_1000(driver, wait):
     # (Mesma lógica robusta do script anterior)
-    xpath_select_ano = "//select[.//option[@value='2025']]"
+    xpath_select_ano = "//select[.//option[@value='2024']]"
     try:
         try:
             select_element = WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.XPATH, xpath_select_ano)))
@@ -126,8 +126,8 @@ def preparar_lista_1000(driver, wait):
             select_element = wait.until(EC.presence_of_element_located((By.XPATH, xpath_select_ano)))
 
         select_ano = Select(select_element)
-        if select_ano.first_selected_option.get_attribute("value") != "2025":
-            select_ano.select_by_value("2025")
+        if select_ano.first_selected_option.get_attribute("value") != "2024":
+            select_ano.select_by_value("2024")
             btn = driver.find_element(By.XPATH, "//button[contains(@id, 'aplicarFiltrosButton')]")
             driver.execute_script("arguments[0].click();", btn)
             time.sleep(3)
